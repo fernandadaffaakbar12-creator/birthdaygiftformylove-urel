@@ -3,7 +3,7 @@
 // ==========================================
 (function () {
     const PARTICLE_COUNT = 80;
-    const LOVE_TEXTS = ['I love you', 'berry', 'berry', 'berry', '♡', 'berry', 'berry', 'berry'];
+    const LOVE_TEXTS = ['I love you', 'urel', 'urel', 'urel', '♡', 'urel', 'urel', 'urel'];
 
     // Parametric heart shape formula
     function heartX(t) {
@@ -175,7 +175,7 @@
         const pinPopupClose = document.getElementById('pin-popup-close');
 
         // DEFAULT PIN: Silakan ubah angka ini jika ingin PIN lain
-        const SECRET_PIN = "0411";
+        const SECRET_PIN = "2709";
 
         let pinAttempt = 0;
         let popupTimeout = null;
@@ -608,15 +608,15 @@ const PLAYLIST = [
         cover: "img/so.jpeg"
     },
     {
-        title: "Lesung Pipi",
-        artist: "Raim Laode",
-        src: "audio/Lesung Pipi - Raim Laode (Lyrics).mp3",
+        title: "Shape of My Heart",
+        artist: "Backstreet Boys",
+        src: "audio/Shape of My Heart.mp3",
         cover: "img/so.jpeg"
     },
     {
-        title: "Penjaga Hati",
-        artist: "Nadhif Basalamah",
-        src: "audio/Nadhif Basalamah - penjaga hati Lirik.mp3",
+        title: "My Love",
+        artist: "Westlife",
+        src: "audio/Westlife - My Love Lyrics.mp3",
         cover: "img/so.jpeg"
     }
 ];
@@ -1506,12 +1506,24 @@ document.addEventListener('DOMContentLoaded', () => {
         video.muted = true;
         updateVideoMuteUI(video);
 
-        // Sesuaikan rasio aspek container secara otomatis dengan dimensi asli file video
+        // Sesuaikan rasio aspek container & lebar kartu secara otomatis dengan dimensi asli file video
         const applyNativeAspectRatio = () => {
             if (video.videoWidth && video.videoHeight) {
                 const mediaBox = video.closest('.video-media-box') || video.closest('.video-card');
+                const card = video.closest('.video-card');
                 if (mediaBox) {
                     mediaBox.style.aspectRatio = `${video.videoWidth} / ${video.videoHeight}`;
+                }
+                if (card) {
+                    const ratio = video.videoWidth / video.videoHeight;
+                    card.classList.remove('video-card-landscape', 'video-card-square', 'video-card-portrait');
+                    if (ratio > 1.05) {
+                        card.classList.add('video-card-landscape');
+                    } else if (ratio < 0.95) {
+                        card.classList.add('video-card-portrait');
+                    } else {
+                        card.classList.add('video-card-square');
+                    }
                 }
             }
         };

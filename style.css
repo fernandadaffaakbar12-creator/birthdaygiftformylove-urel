@@ -878,14 +878,17 @@ body {
     animation: float-photo 4.8s ease-in-out infinite;
 }
 
-/* Video 1 asli berukuran 1024x576 (16:9 Landscape) */
+/* Ukuran kartu video berdasarkan orientasi rasio aspek */
 .video-card.video-card-landscape {
     max-width: 520px;
 }
 
-/* Video 2 asli berukuran 576x576 (1:1 Square) */
 .video-card.video-card-square {
     max-width: 390px;
+}
+
+.video-card.video-card-portrait {
+    max-width: 340px;
 }
 
 .video-card:nth-child(even) {
@@ -939,13 +942,10 @@ body {
     box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.6);
 }
 
-/* Rasio aspek sesuai dimensi asli file video */
-#video-card-1 .video-media-box {
-    aspect-ratio: 16 / 9;
-}
-
+/* Rasio aspek sesuai dimensi asli file video (848x478) */
+#video-card-1 .video-media-box,
 #video-card-2 .video-media-box {
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 848 / 478;
 }
 
 .memory-video {
@@ -1542,7 +1542,8 @@ body {
 
     .video-card,
     .video-card.video-card-landscape,
-    .video-card.video-card-square {
+    .video-card.video-card-square,
+    .video-card.video-card-portrait {
         width: 100%;
         max-width: 100%;
         padding: 10px 10px 12px 10px;
@@ -2098,151 +2099,66 @@ body {
 }
 
 /* =========================================
-   BIRTHDAY CAKE (CSS Art)
+   BIRTHDAY CAKE (Aesthetic Coquette 2-Tier + Lilin 17)
 ========================================= */
 .cake-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    margin-top: 40px;
+    margin-top: 28px;
 }
 
 .candles-row {
     display: flex;
-    gap: 18px;
+    gap: 10px;
     justify-content: center;
     align-items: flex-end;
-    margin-bottom: -2px;
-    z-index: 3;
+    margin-bottom: -8px;
+    z-index: 6;
     position: relative;
+}
+
+.candles-number-17 {
+    gap: 6px;
 }
 
 .candle-stick {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.candle-body {
-    width: 11px;
-    height: 48px;
-    background: repeating-linear-gradient(
-        -45deg,
-        #ffffff 0px,
-        #ffffff 6px,
-        #ff9ebb 6px,
-        #ff9ebb 12px
-    );
-    border-radius: 4px 4px 2px 2px;
     position: relative;
-    box-shadow:
-        inset -2px 0 4px rgba(210, 95, 135, 0.35),
-        inset 2px 0 3px rgba(255, 255, 255, 0.85),
-        0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
-.candle-body::before {
-    content: '';
-    position: absolute;
-    top: -6px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 7px;
-    background: #3a2a2d;
-    border-radius: 1px;
-}
-
-/* =========================================
-   LILIN BERBENTUK ANGKA (Number-Shaped Candles)
-   Angka itu sendiri adalah badan lilin
-========================================= */
-.candle-number-body {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Sumbu lilin (wick) di atas angka */
-.candle-number-body::before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2.5px;
-    height: 10px;
-    background: linear-gradient(180deg, #555, #222);
-    border-radius: 1px;
-    z-index: 4;
-}
-
-.candle-digit {
-    font-family: 'Outfit', sans-serif;
-    font-size: 4.5rem;
-    font-weight: 900;
-    line-height: 1;
-    position: relative;
-    z-index: 1;
-    /* Wax gradient effect */
-    background: linear-gradient(
-        180deg,
-        #ffcce0 0%,
-        #ffb6d3 15%,
-        #ff9ecf 30%,
-        #e876a8 55%,
-        #d65d8c 75%,
-        #c44e7d 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    /* 3D wax-like depth with paint-order trick */
-    paint-order: stroke fill;
-    -webkit-text-stroke: 3px rgba(200, 80, 130, 0.5);
-    filter: drop-shadow(1px 2px 1px rgba(0,0,0,0.35))
-            drop-shadow(-1px 0px 1px rgba(255,255,255,0.15))
-            drop-shadow(0 4px 8px rgba(0,0,0,0.25));
-}
-
-
-
-/* Efek glow di sekitar lilin angka */
 .number-candle {
-    filter: drop-shadow(0 0 12px rgba(255, 160, 200, 0.35));
+    filter: drop-shadow(0 4px 10px rgba(255, 165, 200, 0.35))
+            drop-shadow(0 2px 4px rgba(0, 0, 0, 0.35));
 }
 
-/* Highlight sinar di atas angka */
-.candle-digit::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 10%;
-    width: 80%;
-    height: 30%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.25), transparent);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 3;
+.candle-number-svg {
+    display: block;
+    height: 66px;
+    width: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.candle-one .candle-number-svg {
+    width: 44px;
+}
+
+.candle-seven .candle-number-svg {
+    width: 48px;
 }
 
 /* API LILIN (FLAME) */
 .candle-flame {
-    width: 14px;
-    height: 28px;
+    width: 16px;
+    height: 30px;
     position: relative;
-    margin-bottom: -3px;
-    z-index: 3;
+    margin-bottom: -4px;
+    z-index: 4;
     transition: opacity 1.5s ease, transform 1.5s ease;
-}
-
-/* Api lebih besar untuk lilin angka */
-.number-candle .candle-flame {
-    width: 18px;
-    height: 34px;
-    margin-bottom: -10px;
 }
 
 .candle-flame::before {
@@ -2251,31 +2167,33 @@ body {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 14px;
-    height: 28px;
-    background: radial-gradient(ellipse at bottom, #ffd700, #ff8c00 40%, #ff4500 70%, transparent 100%);
-    border-radius: 50% 50% 30% 30%;
-    animation: flicker 0.3s ease-in-out infinite alternate;
-    box-shadow: 0 0 12px 4px rgba(255, 165, 0, 0.5), 0 0 30px 8px rgba(255, 100, 0, 0.2);
+    width: 15px;
+    height: 29px;
+    background: radial-gradient(ellipse at bottom, #fff9d2 0%, #ffd25a 35%, #ff8c24 68%, rgba(255, 80, 0, 0) 100%);
+    border-radius: 50% 50% 35% 35%;
+    animation: flicker 0.32s ease-in-out infinite alternate;
+    box-shadow:
+        0 0 14px 4px rgba(255, 190, 90, 0.55),
+        0 0 34px 10px rgba(255, 130, 80, 0.28);
 }
 
 .candle-flame .flame-inner {
     position: absolute;
-    bottom: 2px;
+    bottom: 3px;
     left: 50%;
     transform: translateX(-50%);
     width: 6px;
     height: 14px;
-    background: radial-gradient(ellipse at bottom, #ffffee, #ffec8b 60%, transparent 100%);
-    border-radius: 50% 50% 30% 30%;
+    background: radial-gradient(ellipse at bottom, #ffffff 0%, #fff6c2 65%, transparent 100%);
+    border-radius: 50% 50% 35% 35%;
     animation: flickerInner 0.25s ease-in-out infinite alternate;
     z-index: 1;
 }
 
 /* Delay berbeda untuk setiap api lilin */
 .flame-1::before { animation-delay: 0s; }
-.flame-2::before { animation-delay: 0.1s; }
-.flame-3::before { animation-delay: 0.2s; }
+.flame-2::before { animation-delay: 0.14s; }
+.flame-3::before { animation-delay: 0.24s; }
 
 /* State: api redup */
 .candle-flame.dimming {
@@ -2301,15 +2219,15 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 4px;
-    height: 20px;
-    background: linear-gradient(to top, rgba(180, 180, 180, 0.4), transparent);
+    height: 22px;
+    background: linear-gradient(to top, rgba(220, 210, 220, 0.45), transparent);
     border-radius: 50%;
     animation: smokeRise 2s ease-out forwards;
 }
 
 @keyframes flicker {
     0% { transform: translateX(-50%) scaleY(1) scaleX(1) rotate(-2deg); }
-    50% { transform: translateX(-50%) scaleY(1.1) scaleX(0.95) rotate(1deg); }
+    50% { transform: translateX(-50%) scaleY(1.1) scaleX(0.95) rotate(1.5deg); }
     100% { transform: translateX(-50%) scaleY(0.95) scaleX(1.05) rotate(-1deg); }
 }
 
@@ -2319,204 +2237,231 @@ body {
 }
 
 @keyframes smokeRise {
-    0% { opacity: 0.5; transform: translateX(-50%) translateY(0); }
-    100% { opacity: 0; transform: translateX(-50%) translateY(-30px); }
+    0% { opacity: 0.55; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-32px); }
 }
 
-/* KUE PINK & WHITE */
-.cake {
+/* =========================================
+   KUE COQUETTE VINTAGE 2 TINGKAT
+========================================= */
+.cake.aesthetic-cake {
     position: relative;
-    width: 210px;
+    width: 248px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 2;
 }
 
-/* Topping Buah Strawberry & Krim Putih di atas kue (mengapit lilin di tengah) */
-.cake-strawberries {
+.cake-tier {
+    position: relative;
+    overflow: visible;
+}
+
+/* Tingkat Atas (Blush Rose Buttercream) */
+.cake-tier-top {
+    width: 152px;
+    height: 58px;
+    border-radius: 14px 14px 4px 4px;
+    background: linear-gradient(
+        90deg,
+        #ffe0eb 0%,
+        #ffc4d8 22%,
+        #ffb3cc 58%,
+        #f295b6 88%,
+        #e27ea3 100%
+    );
+    box-shadow:
+        inset 0 6px 10px rgba(255, 255, 255, 0.55),
+        inset 0 -4px 8px rgba(185, 80, 120, 0.22),
+        0 6px 14px rgba(35, 10, 28, 0.35);
+    z-index: 4;
+}
+
+/* Tingkat Bawah (Pearl Vanilla Cream) */
+.cake-tier-bottom {
+    width: 218px;
+    height: 76px;
+    margin-top: -2px;
+    border-radius: 14px 14px 10px 10px;
+    background: linear-gradient(
+        90deg,
+        #ffffff 0%,
+        #fff7fa 24%,
+        #ffeef4 62%,
+        #fad5e3 90%,
+        #eec0d2 100%
+    );
+    box-shadow:
+        inset 0 6px 12px rgba(255, 255, 255, 0.8),
+        inset 0 -6px 10px rgba(205, 125, 155, 0.25),
+        0 10px 24px rgba(20, 6, 22, 0.45);
+    z-index: 3;
+}
+
+/* SVG Dekorasi Lambeth Swags & Pita Satin */
+.tier-art {
     position: absolute;
-    top: -15px;
-    left: 5px;
-    width: 200px;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 4;
+    filter: drop-shadow(0 1px 2px rgba(155, 70, 105, 0.25));
+}
+
+/* Baris Krim Piping Scallop (Shell Border) */
+.piping-row {
+    position: absolute;
+    left: -3px;
+    right: -3px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
-    padding: 0 10px;
-    z-index: 4;
-    font-size: 1.05rem;
-    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
     pointer-events: none;
+    z-index: 5;
 }
 
-.cake-strawberries .candle-gap {
-    flex: 0 0 82px;
-}
-
-.cake-strawberries span {
-    display: inline-block;
-    position: relative;
-    animation: strawberryBob 2.5s ease-in-out infinite alternate;
-}
-
-.cake-strawberries span::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
+.piping-row span {
+    display: block;
     width: 18px;
-    height: 7px;
-    background: radial-gradient(ellipse at center, #ffffff 0%, #fff0f5 70%, #ffd6e4 100%);
-    border-radius: 50%;
-    z-index: -1;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-}
-
-.cake-strawberries span:nth-child(even) {
-    animation-delay: 0.4s;
-}
-
-@keyframes strawberryBob {
-    0% { transform: translateY(0) scale(1); }
-    100% { transform: translateY(-2px) scale(1.06); }
-}
-
-/* Lapisan Atas: Whipped White Cream & Soft Pink Icing */
-.cake-top {
-    width: 204px;
-    height: 20px;
-    background: linear-gradient(180deg, #ffffff 0%, #fff2f6 58%, #ffc8da 100%);
-    border-radius: 12px 12px 4px 4px;
-    position: relative;
-    z-index: 2;
+    height: 12px;
+    border-radius: 50% 50% 42% 42%;
+    background: radial-gradient(circle at 38% 32%, #ffffff 0%, #fff2f6 62%, #f4c8d8 100%);
     box-shadow:
-        0 -2px 12px rgba(255, 182, 193, 0.45),
-        inset 0 3px 5px rgba(255, 255, 255, 0.95);
+        0 2px 4px rgba(165, 85, 115, 0.22),
+        inset 0 2px 2px rgba(255, 255, 255, 0.95);
 }
 
-/* Lapisan Tengah: Soft Pastel Pink Cake */
-.cake-middle {
-    width: 200px;
-    height: 50px;
-    background: linear-gradient(180deg, #ffc2d4 0%, #ffacc5 55%, #f493b0 100%);
-    position: relative;
-    border-left: 3px solid rgba(255, 255, 255, 0.45);
-    border-right: 3px solid rgba(215, 110, 145, 0.35);
-    box-shadow: inset 0 6px 10px rgba(255, 255, 255, 0.25);
+.piping-top-edge {
+    top: -6px;
 }
 
-/* Lapisan Krim Putih & Strawberry di Tengah Kue */
-.cake-filling {
-    width: 202px;
-    height: 14px;
-    background: repeating-linear-gradient(
-        90deg,
-        #ffffff 0px,
-        #ffffff 14px,
-        #ff8da8 14px,
-        #ff8da8 22px
-    );
-    border-top: 2px solid #ffffff;
-    border-bottom: 2px solid #f48fb1;
-    border-radius: 4px;
-    z-index: 2;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2), 0 0 10px rgba(255, 182, 193, 0.35);
+.piping-mid-edge {
+    top: -6px;
+    left: 28px;
+    right: 28px;
 }
 
-/* Lapisan Bawah: Creamy White Vanilla Cake */
-.cake-bottom {
-    width: 200px;
-    height: 52px;
-    background: linear-gradient(180deg, #ffffff 0%, #fff4f8 60%, #ffe0eb 100%);
-    border-radius: 0 0 10px 10px;
-    position: relative;
-    box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.45),
-        inset 0 -4px 8px rgba(255, 160, 190, 0.25);
-    border-left: 3px solid rgba(255, 255, 255, 0.85);
-    border-right: 3px solid rgba(225, 155, 180, 0.35);
+.piping-mid-edge span {
+    width: 15px;
+    height: 11px;
 }
 
-/* Lelehan Frosting Putih & Pink (Drips) */
-.cake-frosting {
+.piping-bottom-edge {
+    bottom: -5px;
+}
+
+.piping-bottom-edge span {
+    width: 18px;
+    height: 13px;
+}
+
+/* Lelehan Ganache Rose Glossy di Tier Bawah */
+.cake-drips {
     position: absolute;
-    top: 15px;
-    left: 5px;
-    width: 200px;
+    top: 2px;
+    left: 2px;
+    right: 2px;
     display: flex;
     justify-content: space-around;
-    z-index: 3;
     pointer-events: none;
+    z-index: 3;
 }
 
-.cake-frosting span {
+.cake-drips span {
     display: block;
-    width: 17px;
-    height: 24px;
-    background: linear-gradient(180deg, #ffffff 0%, #fff3f7 70%, #ffdbe7 100%);
-    border-radius: 0 0 50% 50%;
-    box-shadow: 0 3px 5px rgba(180, 90, 120, 0.25), inset 2px 0 3px rgba(255, 255, 255, 0.9);
-    animation: frostDrip 3s ease-in-out infinite alternate;
+    width: 14px;
+    height: 18px;
+    border-radius: 0 0 10px 10px;
+    background: linear-gradient(180deg, #ffabc7 0%, #f586ae 65%, #e36a97 100%);
+    box-shadow:
+        0 2px 5px rgba(175, 70, 110, 0.25),
+        inset 2px 0 3px rgba(255, 255, 255, 0.45);
+    animation: frostDrip 3.2s ease-in-out infinite alternate;
 }
 
-.cake-frosting span:nth-child(even) {
-    height: 32px;
-    width: 15px;
-    background: linear-gradient(180deg, #ff9ebb 0%, #ff7da3 70%, #f0628a 100%);
-    box-shadow: 0 3px 6px rgba(180, 70, 105, 0.3), inset 2px 0 2px rgba(255, 255, 255, 0.5);
-    animation-delay: 0.5s;
+.cake-drips span:nth-child(2n) {
+    height: 26px;
+    width: 12px;
+    animation-delay: 0.45s;
 }
 
-.cake-frosting span:nth-child(3n) {
-    height: 20px;
-    animation-delay: 0.9s;
+.cake-drips span:nth-child(3n) {
+    height: 15px;
+    width: 13px;
+    animation-delay: 0.85s;
+}
+
+.cake-drips span:nth-child(5n) {
+    height: 22px;
+    animation-delay: 0.25s;
 }
 
 @keyframes frostDrip {
     0% { transform: scaleY(1); }
-    100% { transform: scaleY(1.15); }
+    100% { transform: scaleY(1.08); }
 }
 
-/* Dekorasi Strawberry & Hati Putih di Badan Kue */
-.cake-decoration {
-    position: absolute;
-    bottom: 24px;
-    left: 5px;
-    width: 200px;
+/* Pedestal Cake Stand Porselen & List Emas */
+.cake-stand {
     display: flex;
-    justify-content: space-around;
-    padding: 0 10px;
-    font-size: 0.95rem;
-    z-index: 3;
-    filter: drop-shadow(0 2px 4px rgba(180, 90, 120, 0.35));
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2px;
+    z-index: 2;
 }
 
-/* Piring / Alas Kue */
-.cake-plate {
-    width: 236px;
-    height: 12px;
-    background: linear-gradient(180deg, #ffffff 0%, #ffe6ef 60%, #ebb4c7 100%);
-    border-radius: 50% / 40% 40% 60% 60%;
-    margin-top: -2px;
-    z-index: 1;
+.cake-stand-plate {
+    width: 248px;
+    height: 13px;
+    background: linear-gradient(180deg, #ffffff 0%, #fff0f5 55%, #e5b8c9 100%);
+    border-top: 2px solid #f5dca4;
+    border-radius: 50% / 35% 35% 65% 65%;
     box-shadow:
-        0 6px 18px rgba(0, 0, 0, 0.55),
-        0 0 18px rgba(255, 182, 193, 0.35),
+        0 6px 18px rgba(0, 0, 0, 0.5),
+        0 0 22px rgba(255, 182, 193, 0.32),
         inset 0 2px 3px rgba(255, 255, 255, 0.95);
 }
 
-/* Glow di sekitar kue */
+.cake-stand-stem {
+    width: 34px;
+    height: 18px;
+    margin-top: -2px;
+    background: linear-gradient(90deg, #e5b8c9 0%, #fff5f8 38%, #ffffff 55%, #e2b2c4 100%);
+    clip-path: polygon(16% 0%, 84% 0%, 100% 100%, 0% 100%);
+    box-shadow: inset 0 3px 6px rgba(140, 75, 100, 0.25);
+}
+
+.cake-stand-base {
+    width: 108px;
+    height: 10px;
+    margin-top: -1px;
+    background: linear-gradient(180deg, #fff5f8 0%, #f3cddb 65%, #d69eb4 100%);
+    border-top: 1.5px solid #f5dca4;
+    border-radius: 50% 50% 40% 40% / 75% 75% 25% 25%;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.55);
+}
+
+/* Glow hangat di sekitar kue */
 .cake-container::after {
     content: '';
     position: absolute;
-    bottom: -12px;
+    bottom: -14px;
     left: 50%;
     transform: translateX(-50%);
-    width: 260px;
-    height: 65px;
-    background: radial-gradient(ellipse, rgba(255, 182, 193, 0.3), rgba(255, 255, 255, 0.12) 50%, transparent 75%);
+    width: 280px;
+    height: 75px;
+    background: radial-gradient(ellipse, rgba(255, 190, 210, 0.34), rgba(255, 230, 180, 0.14) 48%, transparent 74%);
     border-radius: 50%;
     z-index: 0;
+    pointer-events: none;
+}
+
+@media (max-width: 420px) {
+    .cake-container {
+        transform: scale(0.92);
+        margin-top: 18px;
+    }
 }
 
 /* =========================================
@@ -3152,6 +3097,23 @@ body {
 
 .bottle-letter-section.is-letter-visible .letter-paragraph:nth-child(3) {
     transition-delay: 0.42s;
+}
+
+.bottle-letter-section.is-letter-visible .letter-paragraph:nth-child(4) {
+    transition-delay: 0.56s;
+}
+
+.bottle-letter-section.is-letter-visible .letter-paragraph:nth-child(5) {
+    transition-delay: 0.70s;
+}
+
+.bottle-letter-section.is-letter-visible .letter-paragraph:nth-child(6) {
+    transition-delay: 0.84s;
+}
+
+.letter-signature {
+    margin-top: 24px;
+    font-style: italic;
 }
 
 .letter-footer {
